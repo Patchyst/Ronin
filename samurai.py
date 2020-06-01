@@ -19,3 +19,12 @@ class Samurai(Entity):
         cprint("[A] heal", "red")
         cprint("[B] slash", "red")
         cprint("[C] jab", "red")
+    def move(self, choice, enemy):
+        if choice == "A" or choice == "a":
+            self.heal()
+        elif choice == "B" or choice == "b":
+            self.slash(enemy)
+        elif choice == "C" or choice == "c":
+            self.jab(enemy)
+        else:
+            print("invalid input")
