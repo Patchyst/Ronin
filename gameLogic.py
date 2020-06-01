@@ -73,25 +73,16 @@ class gameLogic:
         print("\n")
         player.stats()
         cprint("\nWhat will " + player.name + " do? ", "magenta", attrs=["bold"])
-        while player.isalive() and beast.isalive():
-            player.display_moves()
-            type_key("Make your move " + player.name + ": ")
-            player_move = input("")
-            print(player_move, beast)
-            player_choice(player_move)
-
+        battle(player, beast)
 def output_file(file):
     Ofile = open(file, "r")
     for line in Ofile.readlines():
         sleep(random.uniform(0.01, 0.05))
         print(line.strip("\n"))
 
-def player_choice(choice, enemy):
-    if choice == "A" or choice == "a":
-        player.heal()
-    elif choice == "B" or choice == "b":
-        player.slash(enemy)
-    elif choice == "C" or choice == "c":
-        player.jab(enemy)
-    else:
-        print("invalid input")
+def battle( player, enemy):
+    while player.isalive() and enemy.isalive():
+        player.display_moves()
+        type_key("Make your move " + player.name + ": ")
+        player_move = input("")
+        player.move(player_move, enemy)
